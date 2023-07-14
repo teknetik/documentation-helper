@@ -4,30 +4,24 @@ from typing import Any, Dict, List
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
-from langchain.vectorstores import Pinecone
+from langchain.vectorstores import Chroma
 import pinecone
 
 
-pinecone.init(
-    api_key=os.environ["PINECONE_API_KEY"],
-    environment=os.environ["PINECONE_ENVIRONMENT_REGION"],
-)
-
-INDEX_NAME = "langchain-doc"
-
+persist_directory='db'
 
 def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
+    print("Generating response")
     embeddings = OpenAIEmbeddings(openai_api_key=os.environ["OPENAI_API_KEY"])
-    docsearch = Pinecone.from_existing_index(
-        embedding=embeddings,
-        index_name=INDEX_NAME,
-    )
+    vectordb = Chroma(persist_directory=persist_directory, 
+                  embedding_function=embeddings)
     chat = ChatOpenAI(
+        model="gpt-4",
         verbose=True,
         temperature=0,
     )
 
     qa = ConversationalRetrievalChain.from_llm(
-        llm=chat, retriever=docsearch.as_retriever(), return_source_documents=True
+        llm=chat, retriever=vectordb.as_retriever(), return_source_documents=True
     )
     return qa({"question": query, "chat_history": chat_history})
