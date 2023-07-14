@@ -1,5 +1,5 @@
 from typing import Set
-
+import base64
 from backend.core import run_llm
 import streamlit as st
 from streamlit_chat import message
@@ -15,8 +15,45 @@ def create_sources_string(source_urls: Set[str]) -> str:
         sources_string += f"{i+1}. {source}\n"
     return sources_string
 
+LOGO_IMAGE = "static/img/logo.png"
 
-st.header("Kong AI Assistant")
+st.markdown(
+    """
+    <style>
+    .container {
+        display: flex;
+    }
+    .logo-text {
+        font-weight:700 !important;
+        font-size:40px !important;
+        color: #fffff !important;
+        padding-right: 20px
+
+        
+    }
+    .logo-img {
+        padding-top: 15px;
+        float:right;
+        width: 50px;
+        height: 50px;
+        
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f"""
+    <div class="container">
+    <p class="logo-text">EchoNexus</p>
+        <img class="logo-img" src="data:image/png;base64,{base64.b64encode(open(LOGO_IMAGE, "rb").read()).decode()}">
+        
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 if (
     "chat_answers_history" not in st.session_state
     and "user_prompt_history" not in st.session_state
@@ -56,5 +93,13 @@ if st.session_state["chat_answers_history"]:
         message(
             user_query,
             is_user=True,
+            avatar_style="no-avatar",
+            logo=None,
         )
-        message(generated_response)
+        message(generated_response,
+                avatar_style="bottts-neutral",
+                seed="Casper",
+                #logo='/opt/documentation-helper/static/img/eye.png',
+                is_user=False,
+                allow_html=True,
+                )

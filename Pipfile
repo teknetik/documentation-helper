@@ -18,6 +18,8 @@ uvicorn = "*"
 streamlit = "*"
 streamlit-chat = "*"
 tqdm = "*"
+pybind11 = "*"
+chromadb = "*"
 
 [dev-packages]
 
