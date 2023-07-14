@@ -1,0 +1,61 @@
+[{
+		"path": "/home/teknetik/websites/docs.kong/docs.konghq.com/gateway/latest",
+		"metadata": {
+			"product": "gateway",
+			"version": "3.3.x"
+		}
+	},
+	{
+		"path": "/home/teknetik/websites/docs.kong/docs.konghq.com/gateway/2.8",
+		"metadata": {
+			"product": "gateway",
+			"version": "2.8.x"
+		}
+	},
+    {
+		"path": "/home/teknetik/websites/docs.kong/docs.konghq.com/gateway/admin-api",
+		"metadata": {
+			"product": "gateway",
+			"version": "3.3.x"
+		}
+	},
+    {
+		"path": "/home/teknetik/websites/docs.kong/docs.konghq.com/gateway/changelog",
+		"metadata": {
+			"product": "gateway",
+			"version": "3.3.x"
+		}
+	},
+    {
+		"path": "/home/teknetik/websites/docs.kong/docs.konghq.com/konnect/",
+		"metadata": {
+			"product": "gateway",
+			"version": "3.3.x"
+		}
+	},
+    {
+		"path": "/home/teknetik/websites/docs.kong/docs.konghq.com/api",
+		"metadata": {
+			"product": "gateway",
+			"version": "3.3.x"
+		}
+	},
+    {
+		"path": "/home/teknetik/websites/docs.kong/docs.konghq.com/getting-started-guide",
+		"metadata": {
+			"product": "gateway",
+			"version": "3.3.x"
+		}
+	},
+]
+
+
+
+/home/teknetik/websites/docs.kong/docs.konghq.com/mesh/latest/
+/home/teknetik/websites/docs.kong/docs.konghq.com/mesh/changelog/
+/home/teknetik/websites/docs.kong/docs.konghq.com/plugins/
+/home/teknetik/websites/docs.kong/docs.konghq.com/studio/
+/home/teknetik/websites/docs.kong/docs.konghq.com/kubernetes-ingress-controller/
+/home/teknetik/websites/docs.kong/docs.konghq.com/install/
+/home/teknetik/websites/docs.kong/docs.konghq.com/konnect-platform/
+/home/teknetik/websites/docs.kong/docs.konghq.com/deck/

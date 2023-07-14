@@ -39,7 +39,7 @@ def ingest_docs(file):
     documents = text_splitter.split_documents(raw_documents)
     for doc in documents:
         new_url = doc.metadata["source"]
-        new_url = new_url.replace("langchain-docs", "https:/")
+        new_url = new_url.replace("/home/teknetik/websites/docs.kong/", "https:/")
         doc.metadata.update({"source": new_url})
 
     embeddings = OpenAIEmbeddings()
