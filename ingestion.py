@@ -4,9 +4,9 @@ from langchain.document_loaders import ReadTheDocsLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Pinecone
-from langchain.document_loaders import UnstructuredHTMLLoader
+
 from langchain.vectorstores import Chroma
-import os
+import json
 
 
 def get_files_in_dir(directory):
@@ -16,15 +16,24 @@ def get_files_in_dir(directory):
     for dirpath, dirnames, filenames in os.walk(directory):
         for file in filenames:
             # Check if the file is .html
-            if file.endswith(".html"):
+            if file.endswith(".md"):
                 file_list.append(os.path.join(dirpath, file))
+            else:
+                pass
             # file_list.append(os.path.join(dirpath, file))
     return file_list
 
 
-def ingest_docs(file):
+def ingest_docs(file, loader_type="md"):
     # loader = ReadTheDocsLoader(path="/home/teknetik/websites/docs.kong/docs.konghq.com/index.html")
-    loader = UnstructuredHTMLLoader(file)
+    if loader_type == "html":
+        print(f"Using HTML loader for {file}")
+        from langchain.document_loaders import UnstructuredHTMLLoader
+        loader = UnstructuredHTMLLoader(file)
+    if loader_type == "md":
+        print(f"Using Markdown loader for {file}")
+        from langchain.document_loaders import UnstructuredMarkdownLoader
+        loader = UnstructuredMarkdownLoader(file)
     raw_documents = loader.load()
     print(f"loaded {len(raw_documents)} documents")
     text_splitter = RecursiveCharacterTextSplitter(
@@ -53,11 +62,15 @@ if __name__ == "__main__":
     # Ensure to update the meta data with the product and version or other applicable metadata
     #
     ###
-    directory_to_scan = "/home/teknetik/websites/docs.kong/docs.konghq.com/mesh/latest/"  # Change this to your target directory
-    file_list = get_files_in_dir(directory_to_scan)
-    file_num = len(file_list)
-    i = 1
-    for file in file_list:
-        print(file + " " + str(i) + " of " + str(file_num))
-        ingest_docs(file)
-        i += 1
+    directory_to_scan = "/opt/charts/"  # Change this to your target directory
+    with open('dirs_to_ingest.json', 'r') as file:
+        dir_list = json.load(file)
+    for dir in dir_list:
+        print(dir['path'])
+        file_list = get_files_in_dir(dir['path'])
+        file_num = len(file_list)
+        i = 1
+        for file in file_list:
+            print(file + " " + str(i) + " of " + str(file_num))
+            ingest_docs(file, loader_type="md")
+            i += 1

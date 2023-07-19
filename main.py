@@ -10,9 +10,10 @@ def create_sources_string(source_urls: Set[str]) -> str:
         return ""
     sources_list = list(source_urls)
     sources_list.sort()
-    sources_string = "sources:\n"
+    sources_string = "sources:\n<ul>"
     for i, source in enumerate(sources_list):
-        sources_string += f"{i+1}. {source}\n"
+        sources_string += f"<li><a href=\"{source}\">{source}</a></li><br>\n"
+    sources_string += "</ul>"
     return sources_string
 
 LOGO_IMAGE = "static/img/logo.png"
@@ -36,8 +37,12 @@ st.markdown(
         float:right;
         width: 50px;
         height: 50px;
-        
+    .li {
+        font-size: 20px;
+        color: #fffff !important;
+    }    
     }
+
     </style>
     """,
     unsafe_allow_html=True

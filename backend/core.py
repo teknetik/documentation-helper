@@ -16,9 +16,10 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
     vectordb = Chroma(persist_directory=persist_directory, 
                   embedding_function=embeddings)
     chat = ChatOpenAI(
-        model="gpt-4",
+        model="gpt-4-0613",
         verbose=True,
         temperature=0,
+        max_tokens=4000,
     )
 
     qa = ConversationalRetrievalChain.from_llm(

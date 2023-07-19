@@ -20,6 +20,9 @@ streamlit-chat = "*"
 tqdm = "*"
 pybind11 = "*"
 chromadb = "*"
+google-search-results = "*"
+python-amazon-sp-api = "*"
+apscheduler = "*"
 
 [dev-packages]
 
