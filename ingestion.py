@@ -29,10 +29,12 @@ def ingest_docs(file, loader_type="md"):
     if loader_type == "html":
         print(f"Using HTML loader for {file}")
         from langchain.document_loaders import UnstructuredHTMLLoader
+
         loader = UnstructuredHTMLLoader(file)
     if loader_type == "md":
         print(f"Using Markdown loader for {file}")
         from langchain.document_loaders import UnstructuredMarkdownLoader
+
         loader = UnstructuredMarkdownLoader(file)
     raw_documents = loader.load()
     print(f"loaded {len(raw_documents)} documents")
@@ -44,16 +46,17 @@ def ingest_docs(file, loader_type="md"):
         new_url = doc.metadata["source"]
         new_url = new_url.replace("/home/teknetik/websites/docs.kong/", "https:/")
         doc.metadata.update({"source": new_url})
-    
-    persist_directory = 'db'
+
+    persist_directory = "vector_db"
     embeddings = OpenAIEmbeddings()
     print(f"Going to add {len(documents)} to Chroma")
-    vectordb = Chroma.from_documents(documents=documents, 
-                                 embedding=embeddings,
-                                 persist_directory=persist_directory)
+    vectordb = Chroma.from_documents(
+        documents=documents, embedding=embeddings, persist_directory=persist_directory
+    )
     print("****Loading to vectorestore done ***")
     vectordb.persist()
     vectordb = None
+
 
 if __name__ == "__main__":
     ###
@@ -63,11 +66,11 @@ if __name__ == "__main__":
     #
     ###
     directory_to_scan = "/opt/charts/"  # Change this to your target directory
-    with open('dirs_to_ingest.json', 'r') as file:
+    with open("dirs_to_ingest.json", "r") as file:
         dir_list = json.load(file)
     for dir in dir_list:
-        print(dir['path'])
-        file_list = get_files_in_dir(dir['path'])
+        print(dir["path"])
+        file_list = get_files_in_dir(dir["path"])
         file_num = len(file_list)
         i = 1
         for file in file_list:

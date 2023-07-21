@@ -23,6 +23,15 @@ chromadb = "*"
 google-search-results = "*"
 python-amazon-sp-api = "*"
 apscheduler = "*"
+seaborn = "*"
+psycopg2 = "*"
+environ = "*"
+sounddevice = "*"
+scipy = "*"
+gtts = "*"
+elevenlabs = "*"
+pyttsx3 = "*"
+keyboard = "*"
 
 [dev-packages]
 

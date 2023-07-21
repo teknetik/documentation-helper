@@ -159,4 +159,13 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 langchain-docs/
-db/
+wector_db/*
+tools/amazon/keys.py
+chatgpt_response.wav
+vector_db/chroma-collections.parquet
+vector_db/chroma-embeddings.parquet
+vector_db/index/id_to_uuid_054b3d5d-7570-4b1f-8a20-2537fa31df8a.pkl
+vector_db/index/index_054b3d5d-7570-4b1f-8a20-2537fa31df8a.bin
+vector_db/index/index_metadata_054b3d5d-7570-4b1f-8a20-2537fa31df8a.pkl
+vector_db/index/uuid_to_id_054b3d5d-7570-4b1f-8a20-2537fa31df8a.pkl
+tools/amazon/responses/data.json

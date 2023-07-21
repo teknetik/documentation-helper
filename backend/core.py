@@ -8,13 +8,15 @@ from langchain.vectorstores import Chroma
 import pinecone
 
 
-persist_directory='db'
+persist_directory = "db"
+
 
 def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
     print("Generating response")
     embeddings = OpenAIEmbeddings(openai_api_key=os.environ["OPENAI_API_KEY"])
-    vectordb = Chroma(persist_directory=persist_directory, 
-                  embedding_function=embeddings)
+    vectordb = Chroma(
+        persist_directory=persist_directory, embedding_function=embeddings
+    )
     chat = ChatOpenAI(
         model="gpt-4-0613",
         verbose=True,

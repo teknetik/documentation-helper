@@ -12,9 +12,10 @@ def create_sources_string(source_urls: Set[str]) -> str:
     sources_list.sort()
     sources_string = "sources:\n<ul>"
     for i, source in enumerate(sources_list):
-        sources_string += f"<li><a href=\"{source}\">{source}</a></li><br>\n"
+        sources_string += f'<li><a href="{source}">{source}</a></li><br>\n'
     sources_string += "</ul>"
     return sources_string
+
 
 LOGO_IMAGE = "static/img/logo.png"
 
@@ -45,7 +46,7 @@ st.markdown(
 
     </style>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 st.markdown(
@@ -56,7 +57,7 @@ st.markdown(
         
     </div>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 if (
@@ -101,10 +102,11 @@ if st.session_state["chat_answers_history"]:
             avatar_style="no-avatar",
             logo=None,
         )
-        message(generated_response,
-                avatar_style="bottts-neutral",
-                seed="Casper",
-                #logo='/opt/documentation-helper/static/img/eye.png',
-                is_user=False,
-                allow_html=True,
-                )
+        message(
+            generated_response,
+            avatar_style="bottts-neutral",
+            seed="Casper",
+            # logo='/opt/documentation-helper/static/img/eye.png',
+            is_user=False,
+            allow_html=True,
+        )
