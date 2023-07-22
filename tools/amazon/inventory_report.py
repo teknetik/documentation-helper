@@ -9,13 +9,14 @@ from sp_api.base import Marketplaces, ReportType, ProcessingStatus, Granularity
 from keys import *
 
 CLIENT_CONFIG = {
-    'lwa_app_id': LWA_APP_ID,
-    'lwa_client_secret': LWA_CLIENT_SECRET,
-    'aws_secret_key': AWS_SECRET_KEY,
-    'aws_access_key': AWS_ACCESS_KEY,
-    'role_arn': ROLE_ARN,
-    'refresh_token': REFRESH_TOKEN
+    "lwa_app_id": LWA_APP_ID,
+    "lwa_client_secret": LWA_CLIENT_SECRET,
+    "aws_secret_key": AWS_SECRET_KEY,
+    "aws_access_key": AWS_ACCESS_KEY,
+    "role_arn": ROLE_ARN,
+    "refresh_token": REFRESH_TOKEN,
 }
+
 
 def inventory_report():
     report_type = ReportType.GET_FBA_MYI_ALL_INVENTORY_DATA
@@ -91,31 +92,6 @@ def inventory_report():
     print(data_list)
     with open("/opt/documentation-helper/tools/amazon/responses/data.json", "w") as out:
         json.dump(data_list, out)
-
-    f = open("/opt/documentation-helper/tools/amazon/responses/data.json")
-    data = json.load(f)
-    asins = [x["asin"] for x in data][:5]
-
-    marketplaces = dict(US=Marketplaces.GB)
-    data = []
-    for asin in asins:
-        for country, marketplace_id in marketplaces.items():
-            sales = Sales(credentials=CLIENT_CONFIG, marketplace=marketplace_id)
-            res = sales.get_order_metrics(
-                interval=("2021-09-01T00:00:00-07:00", "2022-09-28T00:00:00-07:00"),
-                granularity=Granularity.TOTAL,
-                asin=asin,
-            )
-            metrics = res.payload[0]
-            data.append(
-                {
-                    "unit_count": metrics["unitCount"],
-                    "order_item_count": metrics["orderItemCount"],
-                    "order_count": metrics["orderCount"],
-                    "country": country,
-                    "asin": asin,
-                }
-            )
 
     df = pd.DataFrame(data)
     print(df)

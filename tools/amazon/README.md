@@ -31,7 +31,7 @@ pipenv shell
 
 ## Usage
 
-Make sure to add your SP-API credentials to the `keys.py` file:
+Make sure to add your SP-API credentials to the `keys.py` file which should be populated with various secrets:
 
 ```python
 REFRESH_TOKEN='XXXXXXX'
