@@ -1,15 +1,21 @@
 import csv
 import json
 import time
-
 import pandas as pd
 import requests
-import seaborn as sns
 from sp_api.api import Reports, Sales
 from sp_api.base import Marketplaces, ReportType, ProcessingStatus, Granularity
 
-from keys import CLIENT_CONFIG
+from keys import *
 
+CLIENT_CONFIG = {
+    'lwa_app_id': LWA_APP_ID,
+    'lwa_client_secret': LWA_CLIENT_SECRET,
+    'aws_secret_key': AWS_SECRET_KEY,
+    'aws_access_key': AWS_ACCESS_KEY,
+    'role_arn': ROLE_ARN,
+    'refresh_token': REFRESH_TOKEN
+}
 
 def inventory_report():
     report_type = ReportType.GET_FBA_MYI_ALL_INVENTORY_DATA
@@ -112,7 +118,7 @@ def inventory_report():
             )
 
     df = pd.DataFrame(data)
-    # print(df)
+    print(df)
     return df
 
 

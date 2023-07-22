@@ -10,8 +10,8 @@ def say(text):
         text=text,
         voice="N8SmJJ4vvs5Mz9VaT6u5",
         model="eleven_monolingual_v1",
-        #stream=True,
+        # stream=True,
     )
 
-    #play(audio)
+    # play(audio)
     stream(audio)
