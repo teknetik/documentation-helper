@@ -8,8 +8,8 @@ This library provides a set of tools for use and to be intergrated into wider ap
 
 ## Key Features
 
-- \'inventory_report.py\' - Retrieves comprehensive reports on inventory.
-- \'sales_report.py\' - Generates sales reports.
+- `inventory_report.py` - Retrieves comprehensive reports on inventory.
+- `sales_report.py` - Generates sales reports.
 - Automates various aspects of the eCommerce operations.
 - Utilizes Amazon SP-API for reliable data.
 
@@ -17,23 +17,23 @@ This library provides a set of tools for use and to be intergrated into wider ap
 
 Clone this repository using git:
 
-\`\`\`
+```
 git clone https://github.com/teknetik/documentation-helper
 cd documentation-helper
-\`\`\`
+```
 
 It is recommended to create a virtual environment to isolate package dependencies locally and install project dependencies:
 
-\`\`\`
+```
 pipenv install
 pipenv shell
-\`\`\`
+```
 
 ## Usage
 
 Make sure to add your SP-API credentials to the `keys.py` file:
 
-\`\`\`python
+```python
 REFRESH_TOKEN='XXXXXXX'
 LWA_APP_ID='XXXXXXX'
 LWA_CLIENT_SECRET='XXXXXXX'
@@ -42,19 +42,20 @@ AWS_ACCESS_KEY='XXXXXXX'
 ROLE_ARN='arn:aws:iam::XXXXXXX:role/XXXXXXX'
 DB_USER = "postgres"
 DB_PASSWORD = "XXXXXXX"
-\`\`\`
+```
 
 Once done, you can run the script:
 
-\`\`\`bash
+```
+bash
 docker-compose up -d
-\`\`\`
+```
 
 Provides a containerized environment for the applications supporting dependancies such as PosgreSQL. \'dbOps.py\' is used to initialize the database.
 
 ## Contribution
 
-Contributions, issues, and feature requests are welcome. Feel free to check [issues page](http://github.com/yourusername/WebBarginsLtd_SP-API_Wrapper/issues) if you want to contribute.
+Contributions, issues, and feature requests are welcome. Feel free to check [issues page](https://github.com/teknetik/documentation-helper) if you want to contribute.
 
 ## License
 
@@ -62,9 +63,9 @@ This project is licensed under the terms of the MIT license. See [LICENSE](LICEN
 
 ## Contact
 
-[Your Name] - your.email@example.com
+Carl Draper - carl@webbargins.com
 
-Project Link: [Web Bargins Ltd SP-API Wrapper](https://github.com/yourusername/WebBarginsLtd_SP-API_Wrapper)
+Project Link: [Web Bargins Ltd SP-API Wrapper](https://github.com/teknetik/documentation-helper)
 
 
 ## Credits and thanks
