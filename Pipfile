@@ -31,6 +31,7 @@ gtts = "*"
 elevenlabs = "*"
 pyttsx3 = "*"
 keyboard = "*"
+seaborn = "*"
 
 [dev-packages]
 

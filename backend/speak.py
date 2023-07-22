@@ -13,5 +13,5 @@ def say(text):
         # stream=True,
     )
 
-    # play(audio)
-    stream(audio)
+    play(audio)
+    #stream(audio)

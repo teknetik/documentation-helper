@@ -102,5 +102,5 @@ def create_orders():
 
 
 if __name__ == "__main__":
-    # create_inventory()
+    create_inventory()
     create_orders()

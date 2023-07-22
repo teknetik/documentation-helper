@@ -4,7 +4,7 @@ from sp_api.base import Marketplaces, ReportType, ProcessingStatus, Granularity
 from keys import *
 from datetime import datetime, timedelta
 from dateutil.tz import tzlocal
-
+from cross_platform.os_detect import base_path
 from sqlalchemy import (
         create_engine,
         MetaData,
@@ -16,6 +16,8 @@ from sqlalchemy import (
         Float,
         DateTime,
     )
+
+base_path = base_path()
 from sqlalchemy.dialects.postgresql import insert
 
 CLIENT_CONFIG = {
@@ -103,8 +105,8 @@ def upsert_orders(data):
         else:
             state_or_region = None
         if 'OrderTotal' in order:
-            currency_code = order['OrderTotal'].get('currency_code', None)
-            amount = order['OrderTotal'].get('amount', 0)
+            currency_code = order['OrderTotal'].get('CurrencyCode', None)
+            amount = order['OrderTotal'].get('Amount', 0)
         else:
             OrderTotal = None
         order_data = {
@@ -174,7 +176,7 @@ def upsert_orders(data):
 
 def write_data_to_file(data):
     # Define your file path
-    file_path = "/opt/documentation-helper/tools/amazon/responses/orders.json"
+    file_path = f"{base_path}/documentation-helper/tools/amazon/responses/orders.json"
 
     # Open the file in write mode
     with open(file_path, 'w') as json_file:
@@ -184,7 +186,7 @@ def write_data_to_file(data):
 
 def read_data_from_file():
     # Define your file path
-    file_path = "/opt/documentation-helper/tools/amazon/responses/orders.json"
+    file_path = f"{base_path}/documentation-helper/tools/amazon/responses/orders.json"
 
     # Open the file in read mode
     with open(file_path, 'r') as json_file:
@@ -194,7 +196,7 @@ def read_data_from_file():
 
 if __name__ == "__main__":
     
-    dev_mode=True
+    dev_mode=False
     if dev_mode:
         print("Running in Dev Mode")
         data = read_data_from_file()

@@ -5,8 +5,14 @@ import pandas as pd
 import requests
 from sp_api.api import Reports, Sales
 from sp_api.base import Marketplaces, ReportType, ProcessingStatus, Granularity
-
+from cross_platform.os_detect import base_path
 from keys import *
+from sqlalchemy import create_engine
+import os 
+base_path = base_path()
+
+engine = create_engine(f"postgresql+psycopg2://postgres:{os.environ['POSTGRES_PASSWORD']}@localhost:5432/amazonseller")
+
 
 CLIENT_CONFIG = {
     "lwa_app_id": LWA_APP_ID,
@@ -25,7 +31,7 @@ def inventory_report():
     report = data.payload
     print(report)
     report_id = report["reportId"]
-    # report_id = "66480019557"
+    report_id = "66494019560"
     res = Reports(credentials=CLIENT_CONFIG, marketplace=Marketplaces.GB)
     data = res.get_report(report_id)
 
@@ -90,10 +96,11 @@ def inventory_report():
         }
         data_list.append(data)
     print(data_list)
-    with open("/opt/documentation-helper/tools/amazon/responses/data.json", "w") as out:
+    with open(f"{base_path}/documentation-helper/tools/amazon/responses/data.json", "w") as out:
         json.dump(data_list, out)
 
-    df = pd.DataFrame(data)
+    df = pd.DataFrame([data], index=[0])
+    df.to_sql('inventory', engine, if_exists='append', index=False)
     print(df)
     return df
 

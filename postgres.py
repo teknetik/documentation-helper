@@ -1,5 +1,6 @@
 from langchain import SQLDatabase, SQLDatabaseChain
 from langchain.chat_models import ChatOpenAI
+from datetime import datetime
 
 import os
 from backend.speak import say
@@ -15,13 +16,22 @@ db = SQLDatabase.from_uri(
 
 # setup llm
 llm = ChatOpenAI(
-    temperature=0, openai_api_key=OPENAI_API_KEY, model_name="gpt-3.5-turbo"
+    temperature=0, openai_api_key=OPENAI_API_KEY, model_name="gpt-4"
 )
+# Get the current date and time
+now = datetime.now()
+
+# Format the date to a more human-readable form
+formatted_now = now.strftime("%Y-%m-%d")
 
 # Create query instruction
 QUERY = """
+Todays date is the 22nd of july 2023. 
 Given an input question, first create a syntactically correct postgresql query to run against the amazonseller table, then look at the results of the query and return the answer.
 use the following columns and rules:
+for invetory questions use the inventory table.
+When dealing with order table always include 'order_status != Canceled' but this column does not eist in the inventory table only the orders table.A
+for sales and revenue questions use the orders table. When it makes sense to do so you have join tables.
 when using the product name in the final response try to use the shortest name possible, for example "Sotally Tober" instead of "Sotally Tober Drinking Games for Adults"
 afn_total_quantity for queries on invetory or stock in amazon warehouse
 afn_inbound_shipped_quantity for queries on inbound shipments or products being sent to amazon
