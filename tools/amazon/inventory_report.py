@@ -7,12 +7,27 @@ from sp_api.api import Reports, Sales
 from sp_api.base import Marketplaces, ReportType, ProcessingStatus, Granularity
 from cross_platform.os_detect import base_path
 from keys import *
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
 import os 
+import sys
 base_path = base_path()
 
 engine = create_engine(f"postgresql+psycopg2://postgres:{os.environ['POSTGRES_PASSWORD']}@localhost:5432/amazonseller")
 
+# Create a new session
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Truncate the inventory table
+try:
+    session.execute(text("""TRUNCATE TABLE inventory"""))
+    session.commit()
+    print("Inventory table has been truncated")
+except Exception as e:
+    print("Error occurred while truncating inventory table", e)
+finally:
+    session.close()
 
 CLIENT_CONFIG = {
     "lwa_app_id": LWA_APP_ID,
@@ -31,7 +46,7 @@ def inventory_report():
     report = data.payload
     print(report)
     report_id = report["reportId"]
-    report_id = "66494019560"
+    #report_id = "66494019560"
     res = Reports(credentials=CLIENT_CONFIG, marketplace=Marketplaces.GB)
     data = res.get_report(report_id)
 
@@ -52,7 +67,8 @@ def inventory_report():
         ProcessingStatus.CANCELLED,
     ]:
         print("Report failed!")
-        report_data = data.payload
+        sys.exit("Terminating the script due to fatal error or cancellation.")
+
     else:
         print("Success:")
         print(data.payload)

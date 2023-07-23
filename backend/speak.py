@@ -8,10 +8,13 @@ set_api_key(os.environ["ELEVENLABS_API_KEY"])
 def say(text):
     audio = generate(
         text=text,
-        voice="N8SmJJ4vvs5Mz9VaT6u5",
+        voice="s9nNtTrRlYmeRAQ4QVnO",
         model="eleven_monolingual_v1",
         # stream=True,
     )
 
     play(audio)
     #stream(audio)
+
+if __name__ == "__main__":
+    print(voices())
