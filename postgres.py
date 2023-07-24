@@ -31,6 +31,7 @@ for invetory questions use the inventory table.
 When dealing with order table always include 'order_status != Canceled' but this column does not eist in the inventory table only the orders table.A
 for sales and revenue questions use the orders table. When it makes sense to do so you have join tables.
 when using the product name in the final response try to use the shortest name possible, for example "Sotally Tober" instead of "Sotally Tober Drinking Games for Adults"
+some of the product names also contain a description of the product. try to just use the product name and not the description.
 afn_total_quantity for queries on invetory or stock in amazon warehouse
 afn_inbound_shipped_quantity for queries on inbound shipments or products being sent to amazon
 if there is a number higher than 0 in afn_inbound_shipped_quantity, then the product is being sent to amazon and you should return data from afn_inbound_receiving_quantity which is how many are being processed by amazon.

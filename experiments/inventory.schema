@@ -1,0 +1,116 @@
+{
+  "public.inventory": {
+    "columns": [
+      {
+        "name": "sku",
+        "type": "character varying",
+        "description": "Stock Keeping Unit (SKU) is a unique identifier for each product in the inventory."
+      },
+      {
+        "name": "fnsku",
+        "type": "character varying",
+        "description": "Fulfillment Network Stock Keeping Unit (FNSKU) is a unique identifier for Amazon's fulfillment centers."
+      },
+      {
+        "name": "asin",
+        "type": "character varying",
+        "description": "Amazon Standard Identification Number (ASIN) is a unique identifier for products on Amazon."
+      },
+      {
+        "name": "product_name",
+        "type": "character varying",
+        "description": "The name or title of the product."
+      },
+      {
+        "name": "condition",
+        "type": "character varying",
+        "description": "The condition of the product (e.g., New, Used, Refurbished)."
+      },
+      {
+        "name": "your_price",
+        "type": "integer",
+        "description": "The price set by you for the product."
+      },
+      {
+        "name": "mfn_listing_exists",
+        "type": "boolean",
+        "description": "Indicates whether the product has a Merchant Fulfillment Network (MFN) listing."
+      },
+      {
+        "name": "mfn_fulfillable_quantity",
+        "type": "integer",
+        "description": "The quantity of the product available for fulfillment through Merchant Fulfillment."
+      },
+      {
+        "name": "afn_listing_exists",
+        "type": "boolean",
+        "description": "Indicates whether the product has an Amazon Fulfillment Network (AFN) listing."
+      },
+      {
+        "name": "afn_warehouse_quantity",
+        "type": "integer",
+        "description": "The quantity of the product available in Amazon's fulfillment centers."
+      },
+      {
+        "name": "afn_fulfillable_quantity",
+        "type": "integer",
+        "description": "The quantity of the product available for sale in Amazon's fulfillment centers."
+      },
+      {
+        "name": "afn_unsellable_quantity",
+        "type": "integer",
+        "description": "The quantity of the product that is unsellable in Amazon's fulfillment centers."
+      },
+      {
+        "name": "afn_reserved_quantity",
+        "type": "integer",
+        "description": "The quantity of the product reserved for future orders in Amazon's fulfillment centers."
+      },
+      {
+        "name": "afn_total_quantity",
+        "type": "integer",
+        "description": "The total quantity of the product in Amazon's fulfillment centers (sellable + unsellable + reserved)."
+      },
+      {
+        "name": "afn_inbound_working_quantity",
+        "type": "integer",
+        "description": "The quantity of the product being processed for inbound at Amazon's fulfillment centers."
+      },
+      {
+        "name": "afn_inbound_shipped_quantity",
+        "type": "integer",
+        "description": "The quantity of the product shipped to Amazon's fulfillment centers for inbound."
+      },
+      {
+        "name": "afn_inbound_receiving_quantity",
+        "type": "integer",
+        "description": "The quantity of the product being received at Amazon's fulfillment centers for inbound."
+      },
+      {
+        "name": "afn_researching_quantity",
+        "type": "integer",
+        "description": "The quantity of the product being researched for potential fulfillment at Amazon's fulfillment centers."
+      },
+      {
+        "name": "afn_reserved_future_supply",
+        "type": "integer",
+        "description": "The quantity of the product reserved for future supply at Amazon's fulfillment centers."
+      },
+      {
+        "name": "afn_future_supply_buyable",
+        "type": "integer",
+        "description": "The quantity of the product available for purchase in the future at Amazon's fulfillment centers."
+      },
+      {
+        "name": "per_unit_volume",
+        "type": "double precision",
+        "description": "The volume or size of the product per unit."
+      },
+      {
+        "name": "last_updated",
+        "type": "timestamp without time zone",
+        "description": "The timestamp indicating when the record was last updated."
+      }
+    ]
+  }
+}
